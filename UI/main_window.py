@@ -4,30 +4,17 @@ from tkinter import ttk
 
 class MainWindowTabs:
     def __init__(self, root):
-        # super().__init__(self, root)
         # навигатор вкладок
         tab_control = ttk.Notebook(main_window)
         # ессентукская вкладка
         ess_tab = ttk.Frame(tab_control)
-        # кисловодская вкладка
-        kis_tab = ttk.Frame(tab_control)
-        # пятигорская вкладка
-        pyat_tab = ttk.Frame(tab_control)
-        # железноводская вкладка
-        jelez_tab = ttk.Frame(tab_control)
-        # вкладка архивы
-        archive_tab = ttk.Frame(tab_control)
         # добавить вкладку на окно
         tab_control.add(ess_tab, text="ЕЭУ")
-        tab_control.add(kis_tab, text="КЭУ")
-        tab_control.add(pyat_tab, text="ПЭУ")
-        tab_control.add(jelez_tab, text="ЖЭУ")
-        tab_control.add(archive_tab, text="Архивы")
-        # менеджер геометрии окна
+        # расположить на главном окне
         tab_control.pack(expand=1, fill="both")
 
-        skv_frame = LabelFrame(ess_tab, text="5/0")
-        skv_frame.pack(expand=1, fill="both")
+        skv_frame = LabelFrame(ess_tab, text="5/0", width="50", height="50", bg="gray")
+        skv_frame.grid(row=0, column=0)
 
 
 # конфигурвция главного окна
