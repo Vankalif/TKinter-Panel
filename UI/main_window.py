@@ -26,6 +26,9 @@ class MainWindowTabs:
         # менеджер геометрии окна
         tab_control.pack(expand=1, fill="both")
 
+        skv_frame = LabelFrame(ess_tab, text="5/0")
+        skv_frame.pack(expand=1, fill="both")
+
 
 # конфигурвция главного окна
 main_window = Tk()
