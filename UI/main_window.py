@@ -27,6 +27,7 @@ tab_control.add(pyat_tab, text="ПЭУ")
 tab_control.add(jelez_tab, text="ЖЭУ")
 tab_control.add(archive_tab, text="Архивы")
 
+# менеджер геометрии окна
 tab_control.pack(expand=1, fill="both")
 
 main_window.mainloop()
