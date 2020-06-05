@@ -18,3 +18,4 @@ class RemoteSiteTab(ttk.Frame):
                 self.tab_columns = 0
                 self.tab_row += 1
                 sensor_frame.grid(row=self.tab_row, column=self.tab_columns, padx=10, pady=5)
+                self.tab_columns += 1

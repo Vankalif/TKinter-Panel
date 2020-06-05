@@ -5,6 +5,7 @@ import tkinter as tk
 class SensorFrame(tk.LabelFrame):
     def __init__(self, root, **kw):
         super().__init__(root, **kw)
+        self.hidden_name = kw['text']
         # строка давление
         self.pressure = tk.Label(self, text="Давление")
         self.pressure_value = tk.Label(self, text="0.0")
