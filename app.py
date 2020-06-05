@@ -12,10 +12,10 @@ class MainWindow(tk.Frame):
 
     def init_main(self):
         tab_control = ttk.Notebook()
-        ess_tab = ttk.Frame(tab_control)
+        ess_tab = RemoteSiteTab(tab_control, boreholes=self.boreholes, site="ess_boreholes")
         kis_tab = RemoteSiteTab(tab_control, boreholes=self.boreholes, site="kis_boreholes")
-        pyat_tab = ttk.Frame(tab_control)
-        jel_tab = ttk.Frame(tab_control)
+        pyat_tab = RemoteSiteTab(tab_control, boreholes=self.boreholes, site="pyat_boreholes")
+        jel_tab = RemoteSiteTab(tab_control, boreholes=self.boreholes, site="jel_boreholes")
         archive_tab = ttk.Frame(tab_control)
         tab_control.add(ess_tab, text="ЕЭУ")
         tab_control.add(kis_tab, text="КЭУ")
@@ -34,7 +34,7 @@ if __name__ == '__main__':
     root = tk.Tk()
     app = MainWindow(root, boreholes=boreholes_list)
     root.title("Мониторинг")
-    root.geometry("1400x600")
+    root.geometry("1400x650")
     root.resizable(False, False)
     root.mainloop()
 
