@@ -7,7 +7,8 @@ class RemoteSiteTab(ttk.Frame):
         super().__init__(root, **kw)
         self.boreholes = boreholes
         self.site = site
-        self.frames = [SensorFrame(self, text=borehole_name) for borehole_name in self.boreholes[site]]
+        self.frames = [SensorFrame(self, text=borehole_name, bg="#282C34",
+                                   fg="#A5AFBB", font=('', 12, "bold")) for borehole_name in self.boreholes[site]]
         self.tab_columns = 0
         self.tab_row = 0
         for sensor_frame in self.frames:
