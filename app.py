@@ -36,7 +36,7 @@ if __name__ == '__main__':
     root = tk.Tk()
     app = MainWindow(root, boreholes=boreholes_list)
     root.title("Мониторинг")
-    root.geometry("1400x700")
+    root.geometry("1485x700")
     root.resizable(False, False)
     root.mainloop()
 
