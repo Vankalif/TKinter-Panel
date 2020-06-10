@@ -9,45 +9,72 @@ class SensorFrame(tk.LabelFrame):
     def __init__(self, root, **kw):
         super().__init__(root, **kw)
         self.hidden_name = kw['text']
+
         # строка давление
-        self.pressure = tk.Label(self, text="Давление", bg="#282C34", fg="#989DAC", font=global_font)
-        self.pressure_value = tk.Label(self, text="0.0", bg="#282C34", fg="#989DAC", font=global_font)
-        self.pressure_abbreviation = tk.Label(self, text="КПа", bg="#282C34", fg="#989DAC", font=global_font)
-        self.pressure.grid(row=0, column=0, sticky="W")
-        self.pressure_value.grid(row=0, column=1)
-        self.pressure_abbreviation.grid(row=0, column=2)
+        # ячейка давление
+        self.pressure_cell = tk.Label(self, text="Давление", bg="#282C34", fg="#989DAC", font=global_font)
+        # ячейка значения давления
+        self.pressure_val_cell = tk.Label(self, text="0.0", bg="#282C34", fg="#989DAC", font=global_font)
+        # ячейка аббревитуры единицы изменерния
+        self.pressure_abbr_cell = tk.Label(self, text="КПа", bg="#282C34", fg="#989DAC", font=global_font)
+        self.pressure_cell.grid(row=0, column=0, sticky="W")
+        self.pressure_val_cell.grid(row=0, column=1)
+        self.pressure_abbr_cell.grid(row=0, column=2)
+
         # строка счетчик Д-80
-        self.water_sensor_80 = tk.Label(self, text="Счетчик воды Д-80", bg="#282C34", fg="#989DAC", font=global_font)
-        self.water_sensor_80_value = tk.Label(self, text="0.0", bg="#282C34", fg="#989DAC", font=global_font)
-        self.water_sensor_80_abbreviation = tk.Label(self, text="м3/час", bg="#282C34", fg="#989DAC", font=global_font)
-        self.water_sensor_80.grid(row=1, column=0, sticky="W")
-        self.water_sensor_80_value.grid(row=1, column=1)
-        self.water_sensor_80_abbreviation.grid(row=1, column=2)
+        # ячейка названия счетчика
+        self.sensor_80_cell = tk.Label(self, text="Счетчик воды Д-80", bg="#282C34", fg="#989DAC", font=global_font)
+        # ячейка показателя счетчика
+        self.sensor_80_val_cell = tk.Label(self, text="0.0", bg="#282C34", fg="#989DAC", font=global_font)
+        # ячейка аббревитуры единицы изменерния
+        self.sensor_80_abbr_cell = tk.Label(self, text="м3/час", bg="#282C34", fg="#989DAC", font=global_font)
+        self.sensor_80_cell.grid(row=1, column=0, sticky="W")
+        self.sensor_80_val_cell.grid(row=1, column=1)
+        self.sensor_80_abbr_cell.grid(row=1, column=2)
+
         # строка счетчик Д-50
-        self.water_sensor_50 = tk.Label(self, text="Счетчик воды Д-50", bg="#282C34", fg="#989DAC", font=global_font)
-        self.water_sensor_50_value = tk.Label(self, text="0.0", bg="#282C34", fg="#989DAC", font=global_font)
-        self.water_sensor_50_abbreviation = tk.Label(self, text="м3/час", bg="#282C34", fg="#989DAC", font=global_font)
-        self.water_sensor_50.grid(row=2, column=0, sticky="W")
-        self.water_sensor_50_value.grid(row=2, column=1)
-        self.water_sensor_50_abbreviation.grid(row=2, column=2)
+        # ячейка названия счетчика
+        self.sensor_50_cell = tk.Label(self, text="Счетчик воды Д-50", bg="#282C34", fg="#989DAC", font=global_font)
+        # ячейка показателя счетчика
+        self.sensor_50_val_cell = tk.Label(self, text="0.0", bg="#282C34", fg="#989DAC", font=global_font)
+        # ячейка аббревитуры единицы изменерния
+        self.sensor_50_abbr_cell = tk.Label(self, text="м3/час", bg="#282C34", fg="#989DAC", font=global_font)
+        self.sensor_50_cell.grid(row=2, column=0, sticky="W")
+        self.sensor_50_val_cell.grid(row=2, column=1)
+        self.sensor_50_abbr_cell.grid(row=2, column=2)
+
         # строка счетчик Д-20
-        self.water_sensor_20 = tk.Label(self, text="Счетчик воды Д-20", bg="#282C34", fg="#989DAC", font=global_font)
-        self.water_sensor_20_value = tk.Label(self, text="0.0", bg="#282C34", fg="#989DAC", font=global_font)
-        self.water_sensor_20_abbreviation = tk.Label(self, text="м3/час", bg="#282C34", fg="#989DAC", font=global_font)
-        self.water_sensor_20.grid(row=3, column=0, sticky="W")
-        self.water_sensor_20_value.grid(row=3, column=1)
-        self.water_sensor_20_abbreviation.grid(row=3, column=2)
+        # ячейка названия счетчика
+        self.sensor_20_cell = tk.Label(self, text="Счетчик воды Д-20", bg="#282C34", fg="#989DAC", font=global_font)
+        # ячейка показателя счетчика
+        self.sensor_20_val_cell = tk.Label(self, text="0.0", bg="#282C34", fg="#989DAC", font=global_font)
+        # ячейка аббревитуры единицы изменерния
+        self._sensor_20_abbr_cell = tk.Label(self, text="м3/час", bg="#282C34", fg="#989DAC", font=global_font)
+        self.sensor_20_cell.grid(row=3, column=0, sticky="W")
+        self.sensor_20_val_cell.grid(row=3, column=1)
+        self._sensor_20_abbr_cell.grid(row=3, column=2)
+
         # строка счетчик Д-15
-        self.water_sensor_15 = tk.Label(self, text="Счетчик воды Д-15", bg="#282C34", fg="#989DAC", font=global_font)
-        self.water_sensor_15_value = tk.Label(self, text="0.0", bg="#282C34", fg="#989DAC", font=global_font)
-        self.water_sensor_15_abbreviation = tk.Label(self, text="м3/час", bg="#282C34", fg="#989DAC", font=global_font)
-        self.water_sensor_15.grid(row=4, column=0, sticky="W")
-        self.water_sensor_15_value.grid(row=4, column=1)
-        self.water_sensor_15_abbreviation.grid(row=4, column=2)
+        # ячейка названия счетчика
+        self.sensor_15_cell = tk.Label(self, text="Счетчик воды Д-15", bg="#282C34", fg="#989DAC", font=global_font)
+        # ячейка показателя счетчика
+        self.sensor_15_val_cell = tk.Label(self, text="0.0", bg="#282C34", fg="#989DAC", font=global_font)
+        # ячейка аббревитуры единицы изменерния
+        self.sensor_15_abbr_cell = tk.Label(self, text="м3/час", bg="#282C34", fg="#989DAC", font=global_font)
+        self.sensor_15_cell.grid(row=4, column=0, sticky="W")
+        self.sensor_15_val_cell.grid(row=4, column=1)
+        self.sensor_15_abbr_cell.grid(row=4, column=2)
+
         # строка термометр сопротивления КТСП
-        self.thermometer = tk.Label(self, text="Термометр сопротивления КТСП", bg="#282C34", fg="#989DAC", font=global_font)
-        self.thermometer_value = tk.Label(self, text="0.0", bg="#282C34", fg="#989DAC", font=global_font)
-        self.thermometer_abbreviation = tk.Label(self, text="C", bg="#282C34", fg="#989DAC", font=global_font)
-        self.thermometer.grid(row=5, column=0, sticky="W")
-        self.thermometer_value.grid(row=5, column=1)
-        self.thermometer_abbreviation.grid(row=5, column=2)
+        # ячейка названия счетчика
+        self.therm_cell = tk.Label(self, text="Термометр сопротивления КТСП", bg="#282C34", fg="#989DAC", font=global_font)
+        # ячейка показателя счетчика
+        self.therm_val_cell = tk.Label(self, text="0.0", bg="#282C34", fg="#989DAC", font=global_font)
+        # ячейка аббревитуры единицы изменерния
+        self.therm_abbr_cell = tk.Label(self, text="C", bg="#282C34", fg="#989DAC", font=global_font)
+        self.therm_cell.grid(row=5, column=0, sticky="W")
+        self.therm_val_cell.grid(row=5, column=1)
+        self.therm_abbr_cell.grid(row=5, column=2)
+
+    def update_values(self, val):
+        pass
