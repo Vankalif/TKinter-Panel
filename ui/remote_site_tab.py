@@ -2,6 +2,7 @@ from tkinter import ttk
 from ui.sensor_frame import SensorFrame
 
 
+# Класс для создания вкладки с названием участка
 class RemoteSiteTab(ttk.Frame):
     def __init__(self, root, boreholes, site, **kw):
         super().__init__(root, **kw)
