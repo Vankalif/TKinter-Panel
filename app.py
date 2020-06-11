@@ -5,8 +5,8 @@ from ui.remote_site_tab import RemoteSiteTab
 
 
 class MainWindow(tk.Frame):
-    def __init__(self, root, boreholes, **kw):
-        super().__init__(root, **kw)
+    def __init__(self, parent, boreholes, *args, **kw):
+        super().__init__(parent, *args, **kw)
         self.boreholes = boreholes
         self.init_main()
         self.s = ttk.Style()
@@ -36,7 +36,7 @@ if __name__ == '__main__':
     root = tk.Tk()
     app = MainWindow(root, boreholes=boreholes_list)
     root.title("Мониторинг")
-    root.geometry("1500x700")
+    root.geometry("1460x700")
     root.resizable(False, False)
     root.mainloop()
 

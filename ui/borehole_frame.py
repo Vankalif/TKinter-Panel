@@ -5,21 +5,21 @@ GLOBAL_FONT = ('', 10, "")
 
 
 # класс используется для создания набора датчиков скважин на вкладках участков.
-class SensorFrame(tk.LabelFrame):
-    def __init__(self, root, **kw):
-        super().__init__(root, **kw)
-        self.pressure_val = tk.StringVar()
-        self.pressure_val.set("N/A")
-        self.sensor_80_val = tk.StringVar()
-        self.sensor_80_val.set("N/A")
-        self.sensor_50_val = tk.StringVar()
-        self.sensor_50_val.set("N/A")
-        self.sensor_20_val = tk.StringVar()
-        self.sensor_20_val.set("N/A")
-        self.sensor_15_val = tk.StringVar()
-        self.sensor_15_val.set("N/A")
-        self.therm_val = tk.StringVar()
-        self.therm_val.set("N/A")
+class BoreholeFrame(tk.LabelFrame):
+    def __init__(self, parent, *args, **kw):
+        super().__init__(parent, *args, **kw, bg="#282C34", fg="#E4BF7B", font=("", 12, "bold"))
+        self.pressure_val = tk.DoubleVar()
+        self.pressure_val.set(0.0)
+        self.sensor_80_val = tk.DoubleVar()
+        self.sensor_80_val.set(0.0)
+        self.sensor_50_val = tk.DoubleVar()
+        self.sensor_50_val.set(0.0)
+        self.sensor_20_val = tk.DoubleVar()
+        self.sensor_20_val.set(0.0)
+        self.sensor_15_val = tk.DoubleVar()
+        self.sensor_15_val.set(0.0)
+        self.therm_val = tk.DoubleVar()
+        self.therm_val.set(0.0)
 
         # строка давление
         # ячейка давление
@@ -87,5 +87,10 @@ class SensorFrame(tk.LabelFrame):
         self.therm_val_cell.grid(row=5, column=1)
         self.therm_abbr_cell.grid(row=5, column=2)
 
-    def update_values(self, val):
-        pass
+    def set_values(self, values):
+        self.pressure_val.set(values[0])
+        self.sensor_80_val.set(values[1])
+        self.sensor_50_val.set(values[2])
+        self.sensor_20_val.set(values[3])
+        self.sensor_15_val.set(values[4])
+        self.therm_val.set(values[5])
