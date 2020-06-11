@@ -4,13 +4,16 @@ from utils.conf_reader import ConfReader
 from ui.remote_site_tab import RemoteSiteTab
 
 
-class MainWindow(tk.Frame):
-    def __init__(self, parent, boreholes, *args, **kw):
-        super().__init__(parent, *args, **kw)
-        self.boreholes = boreholes
-        self.init_main()
+class MainWindow(tk.Tk):
+    def __init__(self, *args, **kw):
+        super().__init__(*args, **kw)
         self.s = ttk.Style()
         self.s.configure("new.TFrame", background="#282C34")
+        self.title("Мониторинг")
+        self.geometry("1460x700")
+        self.resizable(False, False)
+        self.boreholes = ConfReader().boreholes
+        self.init_main()
 
     def init_main(self):
         tab_control = ttk.Notebook()
@@ -28,15 +31,6 @@ class MainWindow(tk.Frame):
 
 
 if __name__ == '__main__':
-    try:
-        boreholes_list = ConfReader().boreholes
-    except FileNotFoundError:
-        pass
-
-    root = tk.Tk()
-    app = MainWindow(root, boreholes=boreholes_list)
-    root.title("Мониторинг")
-    root.geometry("1460x700")
-    root.resizable(False, False)
-    root.mainloop()
+    app = MainWindow()
+    app.mainloop()
 
