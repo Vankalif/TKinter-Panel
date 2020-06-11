@@ -10,7 +10,7 @@ class MainWindow(tk.Tk):
         self.s = ttk.Style()
         self.s.configure("new.TFrame", background="#282C34")
         self.title("Мониторинг")
-        self.geometry("1460x700")
+        self.geometry("1435x700")
         self.resizable(False, False)
         self.boreholes = ConfReader().boreholes
         self.init_main()

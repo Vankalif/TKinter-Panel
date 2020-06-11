@@ -8,6 +8,7 @@ GLOBAL_FONT = ('', 10, "")
 class BoreholeFrame(tk.LabelFrame):
     def __init__(self, parent, *args, **kw):
         super().__init__(parent, *args, **kw, bg="#282C34", fg="#E4BF7B", font=("", 12, "bold"))
+        self.borehole_name = kw["text"]
         self.pressure_val = tk.DoubleVar()
         self.pressure_val.set(0.0)
         self.sensor_80_val = tk.DoubleVar()

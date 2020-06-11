@@ -17,4 +17,5 @@ class RemoteSiteTab(ttk.Frame):
             sensor_frame.grid(row=tab_row, column=tab_columns, padx=5, pady=5)
 
     def update_boreholes_frames(self):
-        pass
+        for frame in self.frames:
+            print(frame.borehole_name)
