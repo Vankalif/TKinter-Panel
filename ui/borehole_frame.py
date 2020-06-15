@@ -90,16 +90,16 @@ class BoreholeFrame(tk.LabelFrame):
 
     def set_values(self, values):
         if values[0] > 30:
-            self.pressure_val_cell.config(bg="red")
+            self.pressure_val_cell.config(fg="red")
         else:
-            self.pressure_val_cell.config(bg="green")
+            self.pressure_val_cell.config(fg="green")
 
         if values[1] > 40:
-            self.sensor_80_val_cell.config(bg="red")
+            self.sensor_80_val_cell.config(fg="red")
         else:
-            self.sensor_80_val_cell.config(bg="green")
+            self.sensor_80_val_cell.config(fg="green")
 
-        self.sensor_50_val_cell.config(bg="red") if values[2] > 25 else self.sensor_50_val_cell.config(bg="green")
+        self.sensor_50_val_cell.config(fg="red") if values[2] > 25 else self.sensor_50_val_cell.config(fg="green")
         self.pressure_val.set(values[0])
         self.sensor_80_val.set(values[1])
         self.sensor_50_val.set(values[2])
