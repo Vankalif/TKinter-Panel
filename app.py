@@ -1,3 +1,4 @@
+import random
 import tkinter as tk
 from tkinter import ttk
 from utils.conf_reader import ConfReader
@@ -10,27 +11,41 @@ class MainWindow(tk.Tk):
         self.s = ttk.Style()
         self.s.configure("new.TFrame", background="#282C34")
         self.title("Мониторинг")
-        self.geometry("1435x700")
+        self.geometry("1505x700")
         self.resizable(False, False)
         self.boreholes = ConfReader().boreholes
-        self.init_main()
+        self.tab_control = ttk.Notebook()
+        self.ess_tab = RemoteSiteTab(self.tab_control, boreholes=self.boreholes, site="ess_boreholes", style="new.TFrame")
+        self.kis_tab = RemoteSiteTab(self.tab_control, boreholes=self.boreholes, site="kis_boreholes", style="new.TFrame")
+        self.pyat_tab = RemoteSiteTab(self.tab_control, boreholes=self.boreholes, site="pyat_boreholes", style="new.TFrame")
+        self.jel_tab = RemoteSiteTab(self.tab_control, boreholes=self.boreholes, site="jel_boreholes", style="new.TFrame")
+        self.archive_tab = ttk.Frame(self.tab_control)
+        self.tab_control.add(self.ess_tab, text="ЕЭУ")
+        self.tab_control.add(self.kis_tab, text="КЭУ")
+        self.tab_control.add(self.pyat_tab, text="ПЭУ")
+        self.tab_control.add(self.jel_tab, text="ЖЭУ")
+        self.tab_control.add(self.archive_tab, text="Архивы")
+        self.tab_control.pack(expand=1, fill="both")
+        self.vals = self.generate_vals()
 
-    def init_main(self):
-        tab_control = ttk.Notebook()
-        ess_tab = RemoteSiteTab(tab_control, boreholes=self.boreholes, site="ess_boreholes", style="new.TFrame")
-        kis_tab = RemoteSiteTab(tab_control, boreholes=self.boreholes, site="kis_boreholes", style="new.TFrame")
-        pyat_tab = RemoteSiteTab(tab_control, boreholes=self.boreholes, site="pyat_boreholes", style="new.TFrame")
-        jel_tab = RemoteSiteTab(tab_control, boreholes=self.boreholes, site="jel_boreholes", style="new.TFrame")
-        archive_tab = ttk.Frame(tab_control)
-        tab_control.add(ess_tab, text="ЕЭУ")
-        tab_control.add(kis_tab, text="КЭУ")
-        tab_control.add(pyat_tab, text="ПЭУ")
-        tab_control.add(jel_tab, text="ЖЭУ")
-        tab_control.add(archive_tab, text="Архивы")
-        tab_control.pack(expand=1, fill="both")
+    def generate_vals(self):
+        skv = self.boreholes["ess_boreholes"] + self.boreholes["kis_boreholes"] + self.boreholes["pyat_boreholes"] + self.boreholes["jel_boreholes"]
+        return dict.fromkeys(skv, self.random_tuple())
+
+    def random_tuple(self):
+        return [round(random.uniform(1.0, 90.0), 2) for x in range(6)]
+
+    def update_tabs(self):
+        self.ess_tab.update_boreholes_frames(self.vals)
+        self.kis_tab.update_boreholes_frames(self.vals)
+        self.pyat_tab.update_boreholes_frames(self.vals)
+        self.jel_tab.update_boreholes_frames(self.vals)
+        self.vals = self.generate_vals()
+        self.after(1000, self.update_tabs)
 
 
 if __name__ == '__main__':
     app = MainWindow()
+    app.after(1000, app.update_tabs)
     app.mainloop()
 
