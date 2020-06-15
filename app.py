@@ -30,7 +30,10 @@ class MainWindow(tk.Tk):
 
     def generate_vals(self):
         skv = self.boreholes["ess_boreholes"] + self.boreholes["kis_boreholes"] + self.boreholes["pyat_boreholes"] + self.boreholes["jel_boreholes"]
-        return dict.fromkeys(skv, self.random_tuple())
+        vals = dict.fromkeys(skv)
+        for key in vals:
+            vals[key] = self.random_tuple()
+        return vals
 
     def random_tuple(self):
         return [round(random.uniform(1.0, 90.0), 2) for x in range(6)]
@@ -41,11 +44,11 @@ class MainWindow(tk.Tk):
         self.pyat_tab.update_boreholes_frames(self.vals)
         self.jel_tab.update_boreholes_frames(self.vals)
         self.vals = self.generate_vals()
-        self.after(1000, self.update_tabs)
+        self.after(3000, self.update_tabs)
 
 
 if __name__ == '__main__':
     app = MainWindow()
-    app.after(1000, app.update_tabs)
+    app.after(3000, app.update_tabs)
     app.mainloop()
 

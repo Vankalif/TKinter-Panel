@@ -89,6 +89,17 @@ class BoreholeFrame(tk.LabelFrame):
         self.therm_abbr_cell.grid(row=5, column=2)
 
     def set_values(self, values):
+        if values[0] > 30:
+            self.pressure_val_cell.config(bg="red")
+        else:
+            self.pressure_val_cell.config(bg="green")
+
+        if values[1] > 40:
+            self.sensor_80_val_cell.config(bg="red")
+        else:
+            self.sensor_80_val_cell.config(bg="green")
+
+        self.sensor_50_val_cell.config(bg="red") if values[2] > 25 else self.sensor_50_val_cell.config(bg="green")
         self.pressure_val.set(values[0])
         self.sensor_80_val.set(values[1])
         self.sensor_50_val.set(values[2])
