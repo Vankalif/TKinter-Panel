@@ -1,4 +1,5 @@
 import yaml
+import requests
 import os
 
 
@@ -10,8 +11,8 @@ class ConfReader:
         if os.name == "nt":
             # чтение конфигурации для инициализации интерфейса
             try:
-                with open(".\\conf\\conf.yaml", encoding="utf-8") as stream:
-                    self.boreholes = yaml.load(stream, Loader=yaml.FullLoader)
+                response = requests.get("http://127.0.0.1:5000/config-gui")
+                self.boreholes = yaml.load(response.content, Loader=yaml.FullLoader)
             except FileNotFoundError:
                 self.error_text = "Файл конфигурации в папке conf не найден."
                 raise
