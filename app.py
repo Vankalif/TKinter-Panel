@@ -1,4 +1,5 @@
-import random
+import requests
+import json
 import tkinter as tk
 from tkinter import ttk
 from utils.conf_reader import ConfReader
@@ -26,24 +27,19 @@ class MainWindow(tk.Tk):
         self.tab_control.add(self.jel_tab, text="ЖЭУ")
         self.tab_control.add(self.archive_tab, text="Архивы")
         self.tab_control.pack(expand=1, fill="both")
-        self.vals = self.generate_vals()
+        self.vals = self.get_vals()
 
-    def generate_vals(self):
-        skv = self.boreholes["ess_boreholes"] + self.boreholes["kis_boreholes"] + self.boreholes["pyat_boreholes"] + self.boreholes["jel_boreholes"]
-        vals = dict.fromkeys(skv)
-        for key in vals:
-            vals[key] = self.random_tuple()
-        return vals
-
-    def random_tuple(self):
-        return [round(random.uniform(1.0, 90.0), 2) for x in range(6)]
+    def get_vals(self):
+        response = requests.get("http://127.0.0.1:5000/sensor-values")
+        json_data = json.loads(str(response.content, encoding='utf-8'))
+        return json_data
 
     def update_tabs(self):
         self.ess_tab.update_boreholes_frames(self.vals)
         self.kis_tab.update_boreholes_frames(self.vals)
         self.pyat_tab.update_boreholes_frames(self.vals)
         self.jel_tab.update_boreholes_frames(self.vals)
-        self.vals = self.generate_vals()
+        self.vals = self.get_vals()
         self.after(3000, self.update_tabs)
 
 
