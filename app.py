@@ -21,11 +21,13 @@ class MainWindow(tk.Tk):
         self.pyat_tab = RemoteSiteTab(self.tab_control, boreholes=self.boreholes, site="pyat_boreholes", style="new.TFrame")
         self.jel_tab = RemoteSiteTab(self.tab_control, boreholes=self.boreholes, site="jel_boreholes", style="new.TFrame")
         self.archive_tab = ttk.Frame(self.tab_control)
+        self.meteo_tab = ttk.Frame(self.tab_control)
         self.tab_control.add(self.ess_tab, text="ЕЭУ")
         self.tab_control.add(self.kis_tab, text="КЭУ")
         self.tab_control.add(self.pyat_tab, text="ПЭУ")
         self.tab_control.add(self.jel_tab, text="ЖЭУ")
         self.tab_control.add(self.archive_tab, text="Архивы")
+        self.tab_control.add(self.meteo_tab, text="Метеоданные")
         self.tab_control.pack(expand=1, fill="both")
         self.vals = self.get_vals()
 
